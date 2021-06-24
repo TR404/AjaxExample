@@ -6,7 +6,7 @@
         } 
        
   
-        @keyframes effect { 
+	@keyframes effect { 
             0% { 
                 background: linear-gradient( 
                         #008000, #00FF00); 
@@ -28,3 +28,18 @@ footer {
 	color: white;
 	
 	}
+	
+footer a{
+	color: #fff;
+	text-decoration: none;
+	background-color: transparent;
+	transition-duration: 0.2s;
+
+}
+
+footer a:hover {
+	padding-top: 10px;
+	transition-duration: 0.2s;
+	color: red;
+	font-size: 125%;
+}

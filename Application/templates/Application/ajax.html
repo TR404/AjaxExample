@@ -26,7 +26,8 @@
 						success: function (data) {
 							x = data.listInfoData
 							if (data.status == "Save") {
-								console.log("Form Submitted Successfully");
+								$("#msg").text("Form Submitted Successfully")
+								$("#msg").show()
 								for(i = 0; i<x.length; i++){
 									output += "<tr><td>" + x[i].id +
 									"</td><td>" + x[i].name +
@@ -41,7 +42,8 @@
 								$("form")[0].reset();
 							}
 							if (data.status == 'NotSave') {
-								console.log("Somemthing Went Wrong...");
+								$("#msg").text("Somemthing Went Wrong")
+								$("#msg").show()
 								$("#IntroId").val("");
 								$("form")[0].reset();
 							}
@@ -67,6 +69,8 @@ $("tbody").on("click", ".btn-del", function (){
 		success: function(data) {
 			console.log(data);
 			if (data.status == 'Deleted...') {
+				$("#msg").text("Deleted")
+				$("#msg").show()
 				$(myThis).closest("tr").fadeOut();
 			}
 		},
