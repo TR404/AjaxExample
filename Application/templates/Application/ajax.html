@@ -9,11 +9,18 @@
 			let ab = $("#aboutId").val();
 			let csr = $("input[name=csrfmiddlewaretoken]").val();
 			if(nm == ""){
-				console.log("Please Enter Name")
+				$("#msg").text("You Have To Put Valied Name")
+				$("#msg").show()
+				$("#msg").fadeOut(10000);
 			} else if(mb == ""){
-				console.log("Please Enter Mobile")
+				//console.log("Please Enter Mobile")
+				$("#msg").text("Number Should be start from +91xxxxxxxxxx")
+				$("#msg").show()
+				$("#msg").fadeOut(10000);
 			} else if (em == ""){
-				console.log("Please Enter Email")
+				$("#msg").text("Recheck your Email Address")
+				$("#msg").show()
+				$("#msg").fadeOut(10000);
 			} else if(ab == ""){
 				console.log("Say Somemthing About YourSelf")
 			} else {
