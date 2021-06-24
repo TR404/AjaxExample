@@ -2,6 +2,7 @@
 <script>
 	$("#btnSave").click(function() {
 		output = "";
+		count = 1;
 			let introId = $("#IntroId").val();
 			let nm = $("#nameId").val();
 			let mb = $("#mobileId").val();
@@ -22,7 +23,9 @@
 				$("#msg").show()
 				$("#msg").fadeOut(10000);
 			} else if(ab == ""){
-				console.log("Say Somemthing About YourSelf")
+				$("#msg").text("Drop Some Lines About YourSelf...")
+				$("#msg").show()
+				$("#msg").fadeOut(10000);
 			} else {
 					mydata = {InfoId: introId, name: nm, mobile: mb, email: em, about: ab, csrfmiddlewaretoken: csr};
 					$.ajax({
@@ -37,13 +40,14 @@
 								$("#msg").show()
 								$("#msg").fadeOut(10000);
 								for(i = 0; i<x.length; i++){
-									output += "<tr><td>" + x[i].id +
+									output += "<tr><td>" + count + // x[i].id for id
 									"</td><td>" + x[i].name +
 									 "</td><td>" + x[i].mobile +
 									 "</td><td>" + x[i].email + 
 									 "</td><td>" + x[i].about + 
 									 "</td><td> + <input type = 'button' class = 'btn btn btn-outline-warning btn-sm btn-edit' value = 'Edit' data-sid = " + x[i].id +  
 									 "><input type = 'button' class = 'btn btn btn-outline-danger btn-sm btn-del' value = 'Delete' data-sid = " + x[i].id +"> ";
+									 count = count+1;
 								}
 								$("#tbody").html(output);
 								$("#IntroId").val("");

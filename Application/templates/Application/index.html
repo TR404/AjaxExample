@@ -52,7 +52,7 @@
 				<tbody id = "tbody">
 					{% for value in intro %}
 					<tr>
-						<td>{{value.id}}</td>
+						<td>{{forloop.counter}}</td>
 						<td>{{value.name}}</td>
 						<td>{{value.mobile}}</td>
 						<td>{{value.email}}</td>
