@@ -6,7 +6,7 @@ from django.http import JsonResponse
 
 #		Our Homepage
 def index(request):
-	intro = Intro.objects.all()[::-1]
+	intro = Intro.objects.all()
 	return render(request, 'Application/index.html', {'form': IntroForm(), 'intro': intro})
 	
 	
@@ -23,6 +23,7 @@ def saveData(request):
 			about = request.POST['about']
 			if (InfoId == ''):
 				usr = Intro(name = name, mobile = mobile, email = email, about = about)
+				usr.save()
 			else:
 				usr = Intro(id = InfoId, name = name, mobile = mobile, email = email, about = about)
 				usr.save()

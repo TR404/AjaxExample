@@ -37,12 +37,12 @@
 									 "><input type = 'button' class = 'btn btn-danger btn-sm btn-del' value = 'Delete' data-sid = " + x[i].id +"> ";
 								}
 								$("#tbody").html(output);
-								$("IntroId").val("");
+								$("#IntroId").val("");
 								$("form")[0].reset();
 							}
 							if (data.status == 'NotSave') {
 								console.log("Somemthing Went Wrong...");
-								$("IntroId").val("");
+								$("#IntroId").val("");
 								$("form")[0].reset();
 							}
 						},
