@@ -1,0 +1,10 @@
+{% load static %}
+{% now "d-m-Y H:i:s" %} <br>
+<h2>{{error}}</h2>
+<form  method="POST">
+	{% csrf_token %}
+	{{ form.as_p }}
+	
+
+	<p><input type="submit" value="Continue &rarr;" /></p>
+</form>

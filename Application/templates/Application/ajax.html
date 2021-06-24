@@ -1,0 +1,102 @@
+<!--Welcome Commander-->
+<script>
+	$("#btnSave").click(function() {
+		output = "";
+			let introId = $("#IntroId").val();
+			let nm = $("#nameId").val();
+			let mb = $("#mobileId").val();
+			let em = $("#emailId").val();
+			let ab = $("#aboutId").val();
+			let csr = $("input[name=csrfmiddlewaretoken]").val();
+			if(nm == ""){
+				console.log("Please Enter Name")
+			} else if(mb == ""){
+				console.log("Please Enter Mobile")
+			} else if (em == ""){
+				console.log("Please Enter Email")
+			} else if(ab == ""){
+				console.log("Say Somemthing About YourSelf")
+			} else {
+					mydata = {InfoId: introId, name: nm, mobile: mb, email: em, about: ab, csrfmiddlewaretoken: csr};
+					$.ajax({
+						url: "{% url 'saveData' %}",
+						method: "POST",
+						data: mydata,
+						dataType: "json",
+						success: function (data) {
+							x = data.listInfoData
+							if (data.status == "Save") {
+								console.log("Form Submitted Successfully");
+								for(i = 0; i<x.length; i++){
+									output += "<tr><td>" + x[i].id +
+									"</td><td>" + x[i].name +
+									 "</td><td>" + x[i].mobile +
+									 "</td><td>" + x[i].email + 
+									 "</td><td>" + x[i].about + 
+									 "</td><td> + <input type = 'button' class = 'btn btn-warning btn-sm btn-edit' value = 'Edit' data-sid = " + x[i].id +  
+									 "><input type = 'button' class = 'btn btn-danger btn-sm btn-del' value = 'Delete' data-sid = " + x[i].id +"> ";
+								}
+								$("#tbody").html(output);
+								$("IntroId").val("");
+								$("form")[0].reset();
+							}
+							if (data.status == 'NotSave') {
+								console.log("Somemthing Went Wrong...");
+								$("IntroId").val("");
+								$("form")[0].reset();
+							}
+						},
+					});
+			}
+	});
+
+// Delete Function...
+
+$("tbody").on("click", ".btn-del", function (){
+	let id = $(this).attr("data-sid");
+	let csr = $("input[name=csrfmiddlewaretoken]").val();
+	var confirmation = confirm("Are you sure you want to Delete the item?");
+	myData = {sid:id, csrfmiddlewaretoken: csr};
+	myThis = this;
+	if (confirmation) {
+	$.ajax({
+		url: "{% url 'delete' %}",
+		method: "POST",
+		data: myData,
+		dataType: "json",
+		success: function(data) {
+			console.log(data);
+			if (data.status == 'Deleted...') {
+				$(myThis).closest("tr").fadeOut();
+			}
+		},
+	});
+	alert('Deleted...');
+	}
+});
+
+
+// Edit Data Functionality...
+
+$("tbody").on("click", ".btn-edit", function (){
+	let id = $(this).attr("data-sid");
+	let csr = $("input[name=csrfmiddlewaretoken]").val();
+	myData = {sid:id, csrfmiddlewaretoken: csr};
+	$.ajax({
+		url: "{% url 'edit' %}",
+		method: "POST",
+		data: myData,
+		dataType: "json",
+		success: function(data) {
+			$("#IntroId").val(data.id);
+			$("#nameId").val(data.name);
+			$("#mobileId").val(data.mobile);
+			$("#emailId").val(data.email);
+			$("#aboutId").val(data.about);
+			
+		},
+	});
+});
+
+
+</script>
