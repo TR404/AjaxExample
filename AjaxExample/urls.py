@@ -22,16 +22,6 @@ from django.conf.urls.static import static
 from Application import views
 
 urlpatterns = [
-<<<<<<< HEAD
-	url(r'^media/(?P<path>.*)$', serve,{'document_root': settings.MEDIA_ROOT}), 
-	url(r'^static/(?P<path>.*)$', serve,{'document_root': settings.STATIC_ROOT}), 
-	path('admin/', admin.site.urls),
-	path('', views.index, name = 'index'),
-	path('saveData/', views.saveData, name = 'saveData'),
-	path('delete/', views.delete, name = 'delete'),
-	path('edit/', views.edit, name = 'edit'),
-	path('demo/', views.demo, name = 'demo'),
-=======
     path('admin/', admin.site.urls),
     url(r'^media/(?P<path>.*)$', serve,{'document_root': settings.MEDIA_ROOT}), 
     url(r'^static/(?P<path>.*)$', serve,{'document_root': settings.STATIC_ROOT}), 
@@ -40,7 +30,6 @@ urlpatterns = [
     path('delete/', views.delete, name = 'delete'),
     path('edit/', views.edit, name = 'edit'),
     path('demo/', views.demo, name = 'demo'),
->>>>>>> 7d1ad9c9012e69feccf35483bddb7c9bd3f9cd44
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
